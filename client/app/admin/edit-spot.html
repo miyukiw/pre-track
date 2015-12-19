@@ -6,7 +6,7 @@
     </div>
     <div class="form-group icon-label">
       <label><i class="material-icons">mode_edit</i></label>
-      <input type="datetime" class="form-control" placeholder="説明" required ng-model="data.comment" />
+      <input type="text" class="form-control" placeholder="説明" ng-model="data.comment" />
     </div>
     <div class="image-container" ng-if="isEdit">
       <div class="form-group">
@@ -39,10 +39,6 @@
     <div class="form-group" ng-if="data.time">
       <label><i class="material-icons">access_time</i>time</label>
       <input type="text" class="form-control" required ng-model="data.time" />
-    </div>
-    <div class="form-group" ng-if="isEdit">
-      <label><i class="material-icons">access_time</i>datetime test 使わない</label>
-      <input type="datetime" class="form-control" required />
     </div>
   </div>
   <a ng-if="isEdit" href="javascript:void(0)" ng-click="save()" class="btn btn-raised btn-primary btn-block">更新する</a>
