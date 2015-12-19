@@ -24,6 +24,7 @@
                   <div class="image" ng-style="{'background-image': 'url(' + n + ')','width': resolveImageSize(data.image_urls.length, $index), 'height': resolveImageSize(data.image_urls.length, $index)}"></div>
                 </div>
               </div>
+              <p class="list-group-item-text" ng-if="data.comment">{{data.comment}}</p>
             </div>
           </div>
           <div ng-if="data.type ==='transfer'" ng-hide="$index > spotNum">

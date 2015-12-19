@@ -22,6 +22,10 @@ angular.module('preTrackApp', [
         templateUrl: 'app/spot/edit-spot.html',
         controller: 'EditSpotCtrl'
       })
+      .when('/edit', {
+        templateUrl: 'app/admin/edit-json.html',
+        controller: 'AdminCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

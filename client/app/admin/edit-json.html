@@ -1,0 +1,69 @@
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h3 class="panel-title">EDIT MODE</h3>
+    <div class="panel-body">
+      JSONデータを編集します
+    </div>
+  </div>  
+</div>
+<div id="main" class="container" ng-init="getTrackData()">
+  <div class="row">
+    <div class="track-container">
+      <div class="bg"></div>
+      <div class="list-group">
+        <div class="list-group-item" ng-class="{'start': $index === 0, 'goal': $index === trackItems.length - 1, 'transfer': data.type ==='transfer'}" ng-repeat="data in trackItems track by $index">
+          <div ng-if="data.type ==='place'" ng-hide="$index > spotNum">
+            <div class="bg"></div>
+            <div class="row-action-primary">
+              <i class="num" ng-if="$index === 0">S</i>
+              <i class="num" ng-if="$index === trackItems.length - 1">G</i>
+              <i class="num" ng-if="$index > 0 && $index < trackItems.length - 1">{{data.placeNum}}</i>
+            </div>
+            <div class="row-content">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" required ng-model="data.name" />
+              </div>
+              <div class="form-group">
+                <label>Start</label>
+                <input type="text" class="form-control" required ng-model="data.start" />
+              </div>
+              <div class="image-container">
+                <div class="form-group">
+                  <label for="title">Images</label>
+                  <p ng-repeat="n in data.image_urls track by $index">
+                    <input type="url" class="form-control" id="image_urls" required placeholder="http://example.com/foo.jpg" ng-model="data.image_urls[$index]" />
+                  </p>
+                  <p>
+                    <button type="button" class="btn btn-success" ng-click="addImage(data.image_urls)">+ Add Image URL</button>
+                  </p>
+                  <div class="preview-area">
+                    <div class="images" ng-repeat="n in data.image_urls track by $index" ng-if="n">
+                      <div class="image" ng-style="{'background-image': 'url(' + n + ')'}"></div>
+                      <a href="javascript:void(0);">
+                        <i class="delete-icon glyphicon glyphicon-remove" ng-click="deleteImage(data.image_urls , $index)"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Comment</label>
+                <textarea type="text" class="form-control" required ng-model="data.comment"></textarea>
+              </div>
+            </div>
+          </div>
+          <div ng-if="data.type ==='transfer'" ng-hide="$index > spotNum">
+            <i class="material-icons">directions_walk</i>
+            <span>{{data.name + data.time}}</span>
+            <div class="form-group">
+              <label>Time</label>
+              <input type="text" class="form-control" required ng-model="data.time" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="javascript:void(0)" ng-click="save()" class="btn btn-raised btn-primary btn-block">SUBMIT</a>
+    </div>
+  </div>
+</div>

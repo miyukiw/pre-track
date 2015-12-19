@@ -31,7 +31,7 @@
     <div class="navbar-header">
       <ul class="nav nav-tabs" style="margin-bottom: 15px;">
         <li class="active">
-          <a href="#home" data-toggle="tab" aria-expanded="true">
+          <a href="/" data-toggle="tab" aria-expanded="true">
             <i class="material-icons">navigate_before</i>
           </a>
         </li>
@@ -43,9 +43,9 @@
             <i class="material-icons">more_vert</i>
           <div class="ripple-container"></div></a>
           <ul class="dropdown-menu">
-            <li><a href="#dropdown1" data-toggle="tab">Action</a></li>
+            <li><a href="/addSpot" data-toggle="tab">Add spot</a></li>
             <li class="divider"></li>
-            <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
+            <li><a href="/edit" data-toggle="tab">Edit</a></li>
           </ul>
         </li>
       </ul>
@@ -84,6 +84,7 @@
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>
           <!-- injector:js -->
+          <script src="app/admin/main.controller.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/spot/spot.controller.js"></script>
           <script src="components/modal/modal.service.js"></script>
