@@ -12,7 +12,7 @@
           <div ng-if="data.type ==='place'" ng-hide="$index > spotNum">
             <div class="bg"></div>
             <div class="row-action-primary">
-              <a href="/edit/{{$index}}" ng−click="editIndex($index)">
+              <a href="javascript:void(0)" ng-click="editIndex($index)">
                 <i class="num" ng-if="$index === 0">S</i>
                 <i class="num" ng-if="$index === trackItems.length - 1">G</i>
                 <i class="num" ng-if="$index > 0 && $index < trackItems.length - 1">{{data.placeNum}}</i>

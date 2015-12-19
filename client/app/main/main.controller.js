@@ -31,8 +31,7 @@ angular.module('preTrackApp')
     };
 
     $scope.editIndex = function(index) {
-      debugger
-      //なぜ呼ばれない？？
+      $location.path('/edit/'+index);
     };
 
     $scope.resolveImageSize = function(length, idx) {
