@@ -389,7 +389,7 @@ module.exports = function (grunt) {
       },
       heroku: {
         options: {
-          remote: 'heroku',
+          remote: 'https://git.heroku.com/polar-sierra-6362.git',
           branch: 'master'
         }
       },
