@@ -31,7 +31,7 @@ angular.module('preTrackApp')
     };
 
     $scope.resolveImageSize = function(length, idx) {
-      var full = 288;
+      var full = 234;
       var half = full / 2;
       if (length === 1) {
         return px(full);
