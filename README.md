@@ -1,5 +1,5 @@
-# cup-mock
-mock app for ChinaUnionPay
+# pre-track
+mock for movie shoot on Sunday!
 
 ## setup
 ```
