@@ -1,0 +1,49 @@
+<div class="container" ng-init="getTrackData()">
+  <div class="">
+    <div class="form-group">
+      <label>場所</label>
+      <input type="text" class="form-control" required ng-model="data.name" />
+    </div>
+    <div class="form-group icon-label">
+      <label><i class="material-icons">mode_edit</i></label>
+      <input type="datetime" class="form-control" placeholder="説明" required ng-model="data.comment" />
+    </div>
+    <div class="image-container" ng-if="isEdit">
+      <div class="form-group">
+        <label for="title">Images</label>
+        <p ng-repeat="n in data.image_urls track by $index">
+          <input type="url" class="form-control" id="image_urls" required placeholder="http://example.com/foo.jpg" ng-model="data.image_urls[$index]" />
+        </p>
+        <p>
+          <button type="button" class="btn btn-success" ng-click="addImage(data.image_urls)">+ Add Image URL</button>
+        </p>
+        <div class="preview-area">
+          <div class="images" ng-repeat="n in data.image_urls track by $index" ng-if="n">
+            <div class="image" ng-style="{'background-image': 'url(' + n + ')'}"></div>
+            <a href="javascript:void(0);">
+              <i class="delete-icon glyphicon glyphicon-remove" ng-click="deleteImage(data.image_urls , $index)"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group icon-label" ng-if="isEdit">
+      <div class="images" ng-repeat="n in data.image_urls track by $index" ng-if="n">
+        <div class="image" ng-style="{'background-image': 'url(' + n + ')','width': resolveImageSize(data.image_urls.length, $index), 'height': resolveImageSize(data.image_urls.length, $index)}"></div>
+      </div>
+    </div>
+    <div class="form-group" ng-if="data.start">
+      <label><i class="material-icons">access_time</i>start</label>
+      <input type="text" class="form-control" required ng-model="data.start" />
+    </div>
+    <div class="form-group" ng-if="data.time">
+      <label><i class="material-icons">access_time</i>time</label>
+      <input type="text" class="form-control" required ng-model="data.time" />
+    </div>
+    <div class="form-group" ng-if="isEdit">
+      <label><i class="material-icons">access_time</i>datetime test 使わない</label>
+      <input type="datetime" class="form-control" required />
+    </div>
+  </div>
+  <a ng-if="isEdit" href="javascript:void(0)" ng-click="save()" class="btn btn-raised btn-primary btn-block">更新する</a>
+</div>

@@ -12,9 +12,11 @@
           <div ng-if="data.type ==='place'" ng-hide="$index > spotNum">
             <div class="bg"></div>
             <div class="row-action-primary">
-              <i class="num" ng-if="$index === 0">S</i>
-              <i class="num" ng-if="$index === trackItems.length - 1">G</i>
-              <i class="num" ng-if="$index > 0 && $index < trackItems.length - 1">{{data.placeNum}}</i>
+              <a href="/edit/{{$index}}" ng−click="editIndex($index)">
+                <i class="num" ng-if="$index === 0">S</i>
+                <i class="num" ng-if="$index === trackItems.length - 1">G</i>
+                <i class="num" ng-if="$index > 0 && $index < trackItems.length - 1">{{data.placeNum}}</i>
+              </a>
             </div>
             <div class="row-content">
               <h4 class="list-group-item-heading">{{data.name}}</h4>
@@ -24,7 +26,7 @@
                   <div class="image" ng-style="{'background-image': 'url(' + n + ')','width': resolveImageSize(data.image_urls.length, $index), 'height': resolveImageSize(data.image_urls.length, $index)}"></div>
                 </div>
               </div>
-              <p class="list-group-item-text" ng-if="data.comment">{{data.comment}}</p>
+              <p class="list-group-item-text comment" ng-if="data.comment">{{data.comment}}</p>
             </div>
           </div>
           <div ng-if="data.type ==='transfer'" ng-hide="$index > spotNum">

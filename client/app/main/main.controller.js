@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('MainCtrl', ['$scope', '$http', 'step', function ($scope, $http, step) {
+  .controller('MainCtrl', ['$scope', '$http', '$location', 'step', function ($scope, $http, $location, step) {
 
     $scope.formData = {};
     $scope.sending = false;
@@ -28,6 +28,11 @@ angular.module('preTrackApp')
           }
         })
       });
+    };
+
+    $scope.editIndex = function(index) {
+      debugger
+      //なぜ呼ばれない？？
     };
 
     $scope.resolveImageSize = function(length, idx) {

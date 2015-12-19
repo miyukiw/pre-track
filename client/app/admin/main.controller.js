@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('AdminCtrl', ['$scope', '$http', function ($scope, $http) {
+  .controller('AdminCtrl', ['$scope', '$http', 'index', function ($scope, $http, index) {
+    $scope.isEdit = true;
     $scope.sending = false;
     var _placeNum = 0;
 
@@ -22,6 +23,10 @@ angular.module('preTrackApp')
             item.placeNum = _placeNum++;
           }
         })
+
+        if (index !== 'all') {
+          $scope.data = $scope.trackItems[index];
+        }
       });
     };
 
@@ -39,8 +44,10 @@ angular.module('preTrackApp')
         }
       }).success(function(resData) {
         $scope.sending = false;
-        window.alert('ok')
         window.location.href = '/';
+      }).error(function(e) {
+        $scope.sending = false;
+        window.alert(e)
       });
     };
 

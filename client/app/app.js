@@ -19,12 +19,26 @@ angular.module('preTrackApp', [
         }
       })
       .when('/addSpot', {
-        templateUrl: 'app/spot/edit-spot.html',
+        templateUrl: 'app/spot/add-spot.html',
         controller: 'EditSpotCtrl'
       })
       .when('/edit', {
         templateUrl: 'app/admin/edit-json.html',
-        controller: 'AdminCtrl'
+        controller: 'AdminCtrl',
+        resolve: {
+          index: ['$route', function($route) {
+            return 'all';
+          }]
+        }
+      })
+      .when('/edit/:index', {
+        templateUrl: 'app/admin/edit-spot.html',
+        controller: 'AdminCtrl',
+        resolve: {
+          index: ['$route', function($route) {
+            return $route.current.params.index;
+          }]
+        }
       })
       .otherwise({
         redirectTo: '/'

@@ -1,4 +1,36 @@
 
-.tracking-status {
-  margin-top: -15px;
+.icon-label {
+  label {
+    vertical-align: -webkit-baseline-middle;
+  }
+  input {
+    display: inline;
+    width: 90%;
+  }
+}
+
+.add-images {
+  i {
+    padding: 30px;
+    border: 1px solid #ccc;
+    color: #bdbdbd;
+    background-color: #dfdfdf;
+  }
+}
+
+.stars {
+  i {
+    font-size: 30px;
+    margin-right: 20px;
+    color: #bdbdbd;
+  }
+  span {
+    font-size: 20px;
+    float: right;
+  }
+}
+
+.submit-buttons {
+  float: right;
+  margin-bottom: 50px;
 }
