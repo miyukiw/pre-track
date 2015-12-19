@@ -1,0 +1,104 @@
+.tracking-status {
+  margin-top: -15px;
+  margin-bottom: 0;
+}
+#main {
+  .track-container {
+    .bg {
+      position: absolute;
+      left: 38px;
+      background-color: #ddd;
+      width: 12px;
+      height: 100%;
+    }
+
+    .image-container {
+      margin-top: 20px;
+      .images {
+        position: relative;
+        display: inline-block;
+        .image {
+          width: 96px;
+          height: 96px;
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          border: 1px solid #ccc;
+        }
+        .delete-icon {
+          background-color: red;
+          color: #fff;
+          padding: 5px;
+          border-radius: 100px;
+          position: absolute;
+          top: -10px;
+          right: -10px;
+        }
+      }
+    }
+
+    .list-group-item {
+      padding: 0 16px 16px;
+      position: relative;
+      .bg {
+        position: absolute;
+        left: 38px;
+        background-color: #48cfad;
+        width: 12px;
+        height: 100%;
+      }
+
+      .list-group-item-heading {
+        margin-top: 20px;
+      }
+
+      .row-content {
+        min-height: initial;
+        .images {
+          img {
+            height: 100px;
+          }
+        }
+      }
+      .row-action-primary {
+        vertical-align: top;
+        margin-top: 16px;
+        i {
+          position: relative;
+          background: #bbb;
+          font-size: 26px;
+          &.num {
+            background-color: #48cfad;
+            font-style: normal;
+          }
+        }
+      }
+      &.start {
+        .bg {
+          top: 40px;
+        }
+      }
+      &.goal {
+        .bg {
+          height: 40px;
+        }
+      }
+      &.transfer {
+        background-color: #fafafa;
+        padding-bottom: 0;
+        span {
+          vertical-align: super;
+        }
+        i {
+          margin: 16px;
+        }
+      }
+    }
+  }
+
+  .action-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+  }
+}

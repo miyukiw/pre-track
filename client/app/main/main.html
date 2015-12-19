@@ -1,0 +1,88 @@
+<div class="panel panel-default tracking-status">
+  <div class="panel-body text-center">
+    Tracking ...
+  </div>
+</div>
+<div id="main" class="container" ng-init="getTrackData()">
+  <div class="row">
+    <div class="track-container">
+      <div class="bg"></div>
+      <div class="list-group">
+        <div class="list-group-item" ng-class="{'start': $index === 0, 'goal': $index === trackItems.length - 1, 'transfer': data.type ==='transfer'}" ng-repeat="data in trackItems track by $index">
+          <div ng-if="data.type ==='place'" ng-hide="$index > spotNum">
+            <div class="bg"></div>
+            <div class="row-action-primary">
+              <i class="num" ng-if="$index === 0">S</i>
+              <i class="num" ng-if="$index === trackItems.length - 1">G</i>
+              <i class="num" ng-if="$index > 0 && $index < trackItems.length - 1">{{data.placeNum}}</i>
+            </div>
+            <div class="row-content">
+              <h4 class="list-group-item-heading">{{data.name}}</h4>
+              <p class="list-group-item-text ">{{data.start}}</p>
+              <div class="image-container">
+                <div class="images" ng-repeat="n in data.image_urls track by $index" ng-if="n">
+                  <div class="image" ng-style="{'background-image': 'url(' + n + ')','width': resolveImageSize(data.image_urls.length, $index), 'height': resolveImageSize(data.image_urls.length, $index)}"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-if="data.type ==='transfer'" ng-hide="$index > spotNum">
+            <i class="material-icons">directions_walk</i>
+            <span>{{data.name + data.time}}</span>
+          </div>
+        </div>
+      </div>
+      <!--div class="list-group">
+        <div class="list-group-item start">
+          <div class="bg"></div>
+          <div class="row-action-primary">
+            <i class="num">S</i>
+          </div>
+          <div class="row-content">
+            <h4 class="list-group-item-heading">清澄白河駅</h4>
+            <p class="list-group-item-text ">10:02 am</p>
+          </div>
+        </div>
+        <div class="list-group-item">
+          <div class="bg"></div>
+          <div class="row-action-primary">
+            <i class="num">1</i>
+          </div>
+          <div class="row-content">
+            <h4 class="list-group-item-heading">清澄白河駅</h4>
+            <p class="list-group-item-text ">10:02 am</p>
+          </div>
+        </div>
+        <div class="list-group-item transfer">
+          <i class="material-icons">directions_walk</i>
+          <span>清澄白河駅</span>
+        </div>
+        <div class="list-group-item">
+          <div class="bg"></div>
+          <div class="row-action-primary">
+            <i class="num">2</i>
+          </div>
+          <div class="row-content">
+            <div class="least-content">8m</div>
+            <h4 class="list-group-item-heading">Tile with a label</h4>
+
+            <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
+          </div>
+        </div>
+        <div class="list-group-item goal">
+          <div class="bg"></div>
+          <div class="row-action-primary">
+            <i class="num">G</i>
+          </div>
+          <div class="row-content">
+            <h4 class="list-group-item-heading">清澄白河駅</h4>
+            <p class="list-group-item-text ">10:02 am</p>
+          </div>
+        </div>
+      </div-->
+    </div>
+  </div>
+  <div class="action-button">
+    <a href="javascript:void(0)" class="btn btn-primary btn-fab"><i class="material-icons">add</i><div class="ripple-container"></div></a>
+  </div>
+</div>
