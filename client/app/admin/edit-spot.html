@@ -4,11 +4,11 @@
       <label>場所</label>
       <input type="text" class="form-control" required ng-model="data.name" />
     </div>
-    <div class="form-group icon-label">
+    <div class="form-group icon-label" ng-hide="data.type ==='transfer'">
       <label><i class="material-icons">mode_edit</i></label>
       <textarea type="text" placeholder="コメント" class="form-control" ng-model="data.comment"></textarea>
     </div>
-    <div class="image-container" ng-if="isEdit">
+    <div class="image-container" ng-hide="data.type ==='transfer'">
       <div class="form-group">
         <label for="title">Images</label>
         <p ng-repeat="n in data.image_urls track by $index">
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group icon-label" ng-if="isEdit">
+    <div class="form-group icon-label">
       <div class="images" ng-repeat="n in data.image_urls track by $index" ng-if="n">
         <div class="image" ng-style="{'background-image': 'url(' + n + ')','width': resolveImageSize(data.image_urls.length, $index), 'height': resolveImageSize(data.image_urls.length, $index)}"></div>
       </div>
@@ -41,5 +41,5 @@
       <input type="text" class="form-control" required ng-model="data.time" />
     </div>
   </div>
-  <a ng-if="isEdit" href="javascript:void(0)" ng-click="save()" class="btn btn-raised btn-primary btn-block">更新する</a>
+  <a href="javascript:void(0)" ng-click="save()" class="btn btn-raised btn-primary btn-block">更新する</a>
 </div>

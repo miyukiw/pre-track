@@ -2,7 +2,6 @@
 
 angular.module('preTrackApp')
   .controller('AdminCtrl', ['$scope', '$http', 'index', function ($scope, $http, index) {
-    $scope.isEdit = true;
     $scope.sending = false;
     var _placeNum = 0;
 
