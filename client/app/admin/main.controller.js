@@ -1,27 +1,18 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('AdminCtrl', ['$scope', '$http', 'index', function ($scope, $http, index) {
+  .controller('AdminCtrl', ['$scope', '$http', 'index', 'MainService', function ($scope, $http, index, MainService) {
     $scope.sending = false;
     var _placeNum = 0;
 
     $scope.getTrackData = function () {
-      $scope.sending = true;
-
-      $http({
-        url: '/api/track/',
-        method: 'GET',
-        params: {
-          id: 1
-        }
-      }).success(function(resData) {
-        $scope.sending = false;
-        $scope.trackItems = resData.items;
+      MainService.getTrackData().then(function(data) {
+        $scope.trackItems = data;
         $scope.trackItems.forEach(function(item) {
           if (item.type === 'place') {
             item.placeNum = _placeNum++;
           }
-        })
+        });
 
         if (index !== 'all') {
           $scope.data = $scope.trackItems[index];
@@ -30,18 +21,13 @@ angular.module('preTrackApp')
     };
 
     $scope.save = function () {
-      var json = $scope.trackItems;
-      console.log(json);
+      var items = $scope.trackItems;
+      console.log(items);
 
       $scope.sending = true;
 
-      $http({
-        url: '/api/track',
-        method: 'POST',
-        data: {
-          items: json
-        }
-      }).success(function(resData) {
+      MainService.updateTrackData(items)
+      .success(function(resData) {
         $scope.sending = false;
         window.location.href = '/';
       }).error(function(e) {

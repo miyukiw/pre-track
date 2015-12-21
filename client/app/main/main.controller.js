@@ -1,11 +1,9 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('MainCtrl', ['$scope', '$http', '$location', 'step', function ($scope, $http, $location, step) {
+  .controller('MainCtrl', ['$scope', '$http', '$location', 'step', 'MainService', function($scope, $http, $location, step, MainService) {
 
     $scope.formData = {};
-    $scope.sending = false;
-
     $scope.spotNum = step || 999;
 
     var _placeNum = 0;
@@ -13,20 +11,13 @@ angular.module('preTrackApp')
     $scope.getTrackData = function () {
       $scope.sending = true;
 
-      $http({
-        url: '/api/track/',
-        method: 'GET',
-        params: {
-          id: 1
-        }
-      }).success(function(resData) {
-        $scope.sending = false;
-        $scope.trackItems = resData.items;
+      MainService.getTrackData().then(function(data) {
+        $scope.trackItems = data;
         $scope.trackItems.forEach(function(item) {
           if (item.type === 'place') {
             item.placeNum = _placeNum++;
           }
-        })
+        });
       });
     };
 
