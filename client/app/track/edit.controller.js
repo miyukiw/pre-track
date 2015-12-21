@@ -23,15 +23,15 @@ angular.module('preTrackApp')
         $scope.trackName = data.title;
         $scope.trackItems = data.items;
 
-        $scope.selectOptions = [];
+        $scope.selectOptions = [
+          {index:-1, name: '最初に追加'}
+        ];
         for (var i = 0; i < $scope.trackItems.length; i++) {
           var item = $scope.trackItems[i]
           if (item.type === 'place') {
             $scope.selectOptions.push({index:i, name: '「' + item.name + '」の後に追加'});
           }
         };
-        $scope.selectOptions.push({index:data.items.length, name: '最後に追加'});
-
       });
     };
 
@@ -108,9 +108,14 @@ angular.module('preTrackApp')
       items.splice(index, 1);
       console.log(items);
 
+      var data = {
+        title: $scope.trackName,
+        cover: $scope.trackCover,
+        items: items
+      }
       $scope.sending = true;
 
-      MainService.updateTrackData(trackId, items)
+      MainService.updateTrackData(trackId, data)
       .success(function(resData) {
         $scope.sending = false;
         $location.path('/track/' + trackId);
