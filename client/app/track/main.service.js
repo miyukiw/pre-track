@@ -5,7 +5,7 @@ angular.module('preTrackApp')
 
     var _tracks;
 
-    var getTrackData = function () {
+    var getTrackData = function (trackId) {
       var deferred = $q.defer();
       if (_tracks) {
         deferred.resolve(_tracks);
@@ -14,7 +14,7 @@ angular.module('preTrackApp')
           url: '/api/track/',
           method: 'GET',
           params: {
-            id: 1
+            id: trackId
           }
         }).success(function(data, status, headers, config) {
           _tracks = data.items;
@@ -27,9 +27,9 @@ angular.module('preTrackApp')
       return deferred.promise;
     };
 
-    var updateTrackData = function (items) {
+    var updateTrackData = function (trackId, items) {
       return $http({
-        url: '/api/track',
+        url: '/api/track/' + trackId,
         method: 'POST',
         data: {
           items: items

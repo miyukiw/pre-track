@@ -11,7 +11,7 @@ angular.module('preTrackApp')
     $scope.getTrackData = function () {
       $scope.sending = true;
 
-      MainService.getTrackData().then(function(data) {
+      MainService.getTrackData(trackId).then(function(data) {
         $scope.trackItems = data;
         $scope.trackItems.forEach(function(item) {
           if (item.type === 'place') {

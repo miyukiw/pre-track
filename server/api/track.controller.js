@@ -11,28 +11,34 @@ exports.createTrack = function(req, res) {
   res.json(post_data);
 };
 
-var _FILE = (config.root + '/sample.json');
-console.log(_FILE)
+var _DIR = config.root + '/data/';
 
 // get transaction records
 exports.getTrack = function(req, res) {
   var trackId = req.param('id');
-  //console.log(trackId);
-  fs.readFile(_FILE, function (err, data) {
-    if (err) throw err;
-    res.status(200).send(JSON.parse(data));
+  var path = _DIR + trackId + '.json';
+  fs.readFile(path, function (err, data) {
+    if (err) {
+      //throw err;
+      res.status(404).send(err.code);
+    } else {
+      res.status(200).send(JSON.parse(data));
+    }
   });
 };
 
 // get transaction records
 exports.updateTrack = function(req, res) {
   var data = req.body;
-  console.log(data);
+  var trackId = req.param('id');
+  var path = _DIR + trackId + '.json';
 
-  fs.writeFile(_FILE, JSON.stringify(data), function (err) {
-    if (err) throw err;
+  fs.writeFile(path, JSON.stringify(data), function (err) {
+    if (err) {
+      //throw err;
+      res.status(400).send(err.code);
+    }
     console.log('updated!');
     res.status(200).send();
   });
 };
-

@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('TrackEditCtrl', ['$scope', '$http', 'id', 'index', 'MainService', function ($scope, $http, trackId, index, MainService) {
+  .controller('TrackEditCtrl', ['$scope', '$http', '$location', 'id', 'index', 'MainService', function ($scope, $http, $location, trackId, index, MainService) {
     $scope.sending = false;
     var _placeNum = 0;
 
     $scope.getTrackData = function () {
-      MainService.getTrackData().then(function(data) {
+      MainService.getTrackData(trackId).then(function(data) {
         $scope.trackItems = data;
         $scope.trackItems.forEach(function(item) {
           if (item.type === 'place') {
@@ -26,10 +26,10 @@ angular.module('preTrackApp')
 
       $scope.sending = true;
 
-      MainService.updateTrackData(items)
+      MainService.updateTrackData(trackId, items)
       .success(function(resData) {
         $scope.sending = false;
-        window.location.href = '/track/' + trackId;
+        $location.path('/track/' + trackId);
       }).error(function(e) {
         $scope.sending = false;
         window.alert(e)
