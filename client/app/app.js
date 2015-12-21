@@ -9,6 +9,10 @@ angular.module('preTrackApp', [
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
+      .when('/', {
+        templateUrl: 'app/track/list.html',
+        controller: 'TrackListCtrl'
+      })
       .when('/create', {
         templateUrl: 'app/track/create-track.html',
         controller: 'TrackCreateCtrl',
@@ -64,7 +68,7 @@ angular.module('preTrackApp', [
         templateUrl: 'app/spot/add-spot.html'
       })
       .otherwise({
-        redirectTo: '/track/sample'
+        redirectTo: '/'
       });
 
     $locationProvider.html5Mode(true);

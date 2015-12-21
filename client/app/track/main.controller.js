@@ -1,6 +1,17 @@
 'use strict';
 
 angular.module('preTrackApp')
+  .controller('TrackListCtrl', ['$scope', '$rootScope', '$http', '$location', 'MainService', function($scope, $rootScope, $http, $location, MainService) {
+    $rootScope.backPath = null;
+    $rootScope.pageTitle = 'Track';
+
+    $scope.getTrackList = function () {
+      MainService.getTrackList().then(function(res) {
+        $scope.list = res.data;
+      });
+    };
+
+  }])
   .controller('TrackCreateCtrl', ['$scope', '$rootScope', '$http', '$location', 'MainService', function($scope, $rootScope, $http, $location, MainService) {
     $rootScope.backPath = '/';
     $rootScope.pageTitle = 'Create Track';
@@ -35,8 +46,6 @@ angular.module('preTrackApp')
     var _placeNum = 0;
 
     $scope.getTrackData = function () {
-      $scope.sending = true;
-
       MainService.getTrackData(trackId).then(function(data) {
         $rootScope.pageTitle = data.title;
         $scope.trackItems = data.items;

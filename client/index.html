@@ -30,7 +30,10 @@
     <![endif]-->
     <div class="header">
       <ul class="nav nav-tabs" style="margin-bottom: 15px;">
-        <li class="active">
+        <li class="active" ng-if="!backPath">
+          <i class="material-icons">&nbsp;</i>
+        </li>
+        <li class="active" ng-if="backPath">
           <a href="javasctipt:void(0)" ng-click="goto(backPath)" data-toggle="tab" aria-expanded="true">
             <i class="material-icons">navigate_before</i>
           </a>

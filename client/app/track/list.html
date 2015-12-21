@@ -1,0 +1,7 @@
+<div class="container" ng-init="getTrackList()">
+  <div class="panel panel-default" ng-repeat="track in list track by $index" ng-click="goto('/track/' + track.id);">
+    <div class="panel-body">
+      {{track.title}}
+    </div>
+  </div>
+</div>

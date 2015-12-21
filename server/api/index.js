@@ -5,7 +5,8 @@ var controller = require('./track.controller');
 
 var router = express.Router();
 
+router.get('/tracks', controller.getTrackList);
+router.get('/track/:id', controller.getTrack);
 router.post('/create-track', controller.createTrack);
-router.get('/track', controller.getTrack);
 router.post('/track/:id', controller.updateTrack);
 module.exports = router;

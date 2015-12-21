@@ -5,6 +5,13 @@ angular.module('preTrackApp')
 
     var _tracks = {};
 
+    var getTrackList = function () {
+      return $http({
+        url: '/api/tracks',
+        method: 'GET'
+      });
+    };
+
     var createTrack = function (data) {
       return $http({
         url: '/api/create-track',
@@ -19,11 +26,8 @@ angular.module('preTrackApp')
         deferred.resolve(_tracks[trackId]);
       } else {
         $http({
-          url: '/api/track/',
-          method: 'GET',
-          params: {
-            id: trackId
-          }
+          url: '/api/track/' + trackId,
+          method: 'GET'
         }).success(function(data, status, headers, config) {
           _tracks[trackId] = data;
           deferred.resolve(_tracks[trackId]);
@@ -46,6 +50,7 @@ angular.module('preTrackApp')
     };
 
     return {
+      getTrackList: getTrackList,
       createTrack: createTrack,
       getTrackData: getTrackData,
       updateTrackData: updateTrackData
