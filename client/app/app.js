@@ -21,6 +21,15 @@ angular.module('preTrackApp', [
           }]
         }
       })
+      .when('/track/:id/add', {
+        templateUrl: 'app/track/edit-spot.html',
+        controller: 'TrackAddSpotCtrl',
+        resolve: {
+          id: ['$route', function($route) {
+            return $route.current.params.id;
+          }]
+        }
+      })
       .when('/track/:id/edit', {
         templateUrl: 'app/track/edit-json.html',
         controller: 'TrackEditCtrl',

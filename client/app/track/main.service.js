@@ -27,15 +27,13 @@ angular.module('preTrackApp')
       return deferred.promise;
     };
 
-    var updateTrackData = function (trackId, items) {
-      var data = _tracks[trackId];//todo clone
-      data.items = items;
+    var updateTrackData = function (trackId, newData) {
       return $http({
         url: '/api/track/' + trackId,
         method: 'POST',
-        data: data
+        data: newData
       }).success(function(data, status, headers, config) {
-        _tracks[trackId] = data;
+        _tracks[trackId] = newData;
       });
     };
 

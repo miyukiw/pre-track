@@ -1,12 +1,65 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('TrackEditCtrl', ['$scope', '$http', '$location', 'id', 'index', 'MainService', function ($scope, $http, $location, trackId, index, MainService) {
+  .controller('TrackAddSpotCtrl', ['$scope', '$rootScope', '$http', '$location', 'id', 'MainService', function ($scope, $rootScope, $http, $location, trackId, MainService) {
+    $scope.isAdd = true;
+
+    $scope.data = {
+      type: 'place'
+    };
+
+    $scope.getTrackData = function () {
+      MainService.getTrackData(trackId).then(function(data) {
+        $rootScope.pageTitle = data.title;
+        $scope.trackName = data.title;
+        $scope.trackItems = data.items;
+
+        $scope.selectOptions = [];
+        for (var i = 0; i < $scope.trackItems.length; i++) {
+          var item = $scope.trackItems[i]
+          if (item.type === 'place') {
+            $scope.selectOptions.push({index:i, name: '「' + item.name + '」の前に追加'});
+          }
+        };
+        $scope.selectOptions.push({index:data.items.length, name: '最後に追加'});
+
+      });
+    };
+
+    $scope.create = function (idx) {
+      if (idx === undefined) {
+        window.alert('追加する位置を選んでください');
+        return;
+      }
+      $scope.trackItems.splice(idx, 0, $scope.data) ;
+
+      var data = {
+        title: $scope.trackName,
+        items: $scope.trackItems
+      }
+      console.log(data);
+
+      $scope.sending = true;
+
+      MainService.updateTrackData(trackId, data)
+      .success(function(resData) {
+        $scope.sending = false;
+        $location.path('/track/' + trackId);
+      }).error(function(e) {
+        $scope.sending = false;
+        window.alert(e)
+      });
+    };
+
+  }])
+  .controller('TrackEditCtrl', ['$scope', '$rootScope', '$http', '$location', 'id', 'index', 'MainService', function ($scope, $rootScope, $http, $location, trackId, index, MainService) {
     $scope.sending = false;
     var _placeNum = 0;
 
     $scope.getTrackData = function () {
       MainService.getTrackData(trackId).then(function(data) {
+        $rootScope.pageTitle = data.title;
+        $scope.trackName = data.title;
         $scope.trackItems = data.items;
         $scope.trackItems.forEach(function(item) {
           if (item.type === 'place') {
@@ -21,12 +74,15 @@ angular.module('preTrackApp')
     };
 
     $scope.save = function () {
-      var items = $scope.trackItems;
-      console.log(items);
+      var data = {
+        title: $scope.trackName,
+        items: $scope.trackItems
+      }
+      console.log(data);
 
       $scope.sending = true;
 
-      MainService.updateTrackData(trackId, items)
+      MainService.updateTrackData(trackId, data)
       .success(function(resData) {
         $scope.sending = false;
         $location.path('/track/' + trackId);

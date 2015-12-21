@@ -6,7 +6,7 @@ angular.module('preTrackApp')
     $rootScope.pageTitle = '';
     $rootScope.contextMenu = [
       {title: 'Add Spot', path: '/track/' + trackId + '/add'},
-      {title: 'Edit All', path: '/track/' + trackId + '/edit'}
+      {title: 'Edit Track', path: '/track/' + trackId + '/edit'}
     ];
 
     $scope.formData = {};

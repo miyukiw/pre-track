@@ -1,12 +1,8 @@
-<div class="panel panel-danger">
-  <div class="panel-heading">
-    <h3 class="panel-title">EDIT MODE</h3>
-    <div class="panel-body">
-      JSONデータを編集します
-    </div>
-  </div>  
-</div>
 <div id="main" class="container" ng-init="getTrackData()">
+  <div class="form-group">
+    <label>Track</label>
+    <input type="text" class="form-control" required ng-model="trackName" />
+  </div>
   <div class="row">
     <div class="track-container">
       <div class="bg"></div>
