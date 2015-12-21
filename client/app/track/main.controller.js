@@ -4,6 +4,9 @@ angular.module('preTrackApp')
   .controller('TrackListCtrl', ['$scope', '$rootScope', '$http', '$location', 'MainService', function($scope, $rootScope, $http, $location, MainService) {
     $rootScope.backPath = null;
     $rootScope.pageTitle = 'Track';
+    $rootScope.contextMenu = [
+      {title: 'Create Track', path: '/create'}
+    ];
 
     $scope.getTrackList = function () {
       MainService.getTrackList().then(function(res) {
@@ -36,8 +39,7 @@ angular.module('preTrackApp')
     $rootScope.backPath = '/';
     $rootScope.pageTitle = '';
     $rootScope.contextMenu = [
-      {title: 'Edit Track', path: '/track/' + trackId + '/edit'},
-      {title: 'Create Another Track', path: '/create'},
+      {title: 'Edit Track', path: '/track/' + trackId + '/edit'}
     ];
 
     $scope.formData = {};
