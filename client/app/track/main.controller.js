@@ -25,8 +25,8 @@ angular.module('preTrackApp')
     $rootScope.backPath = '/';
     $rootScope.pageTitle = '';
     $rootScope.contextMenu = [
-      {title: 'Add Spot', path: '/track/' + trackId + '/add'},
-      {title: 'Edit Track', path: '/track/' + trackId + '/edit'}
+      {title: 'Edit Track', path: '/track/' + trackId + '/edit'},
+      {title: 'Create Another Track', path: '/create'},
     ];
 
     $scope.formData = {};
@@ -46,6 +46,10 @@ angular.module('preTrackApp')
           }
         });
       });
+    };
+
+    $scope.addSpot = function() {
+      $location.path('/track/' + trackId + '/add');
     };
 
     $scope.editIndex = function(index) {

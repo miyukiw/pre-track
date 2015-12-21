@@ -6,9 +6,17 @@ angular.module('preTrackApp')
     $rootScope.backPath = '/track/' + trackId;
 
     $scope.data = {
-      type: 'place'
+      type: 'place',
+      image_urls: []
     };
 
+    $scope.addImage = function(image_urls) {
+      image_urls.push('');
+    }
+    $scope.deleteImage = function(image_urls, idx) {
+      image_urls.splice(idx, 1);
+    }
+    
     $scope.getTrackData = function () {
       MainService.getTrackData(trackId).then(function(data) {
         $rootScope.pageTitle = data.title;
@@ -19,7 +27,7 @@ angular.module('preTrackApp')
         for (var i = 0; i < $scope.trackItems.length; i++) {
           var item = $scope.trackItems[i]
           if (item.type === 'place') {
-            $scope.selectOptions.push({index:i, name: '「' + item.name + '」の前に追加'});
+            $scope.selectOptions.push({index:i, name: '「' + item.name + '」の後に追加'});
           }
         };
         $scope.selectOptions.push({index:data.items.length, name: '最後に追加'});
@@ -32,7 +40,7 @@ angular.module('preTrackApp')
         window.alert('追加する位置を選んでください');
         return;
       }
-      $scope.trackItems.splice(idx, 0, $scope.data) ;
+      $scope.trackItems.splice(idx+1, 0, $scope.data) ;
 
       var data = {
         title: $scope.trackName,
