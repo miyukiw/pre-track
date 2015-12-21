@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('AdminCtrl', ['$scope', '$http', 'index', 'MainService', function ($scope, $http, index, MainService) {
+  .controller('TrackEditCtrl', ['$scope', '$http', 'id', 'index', 'MainService', function ($scope, $http, trackId, index, MainService) {
     $scope.sending = false;
     var _placeNum = 0;
 
@@ -29,7 +29,7 @@ angular.module('preTrackApp')
       MainService.updateTrackData(items)
       .success(function(resData) {
         $scope.sending = false;
-        window.location.href = '/';
+        window.location.href = '/track/' + trackId;
       }).error(function(e) {
         $scope.sending = false;
         window.alert(e)

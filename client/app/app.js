@@ -9,39 +9,45 @@ angular.module('preTrackApp', [
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl',
+      .when('/track/:id', {
+        templateUrl: 'app/track/main.html',
+        controller: 'TrackCtrl',
         resolve: {
+          id: ['$route', function($route) {
+            return $route.current.params.id;
+          }],
           step: ['$route', function($route) {
             return $route.current.params.s;
           }]
         }
       })
-      .when('/addSpot', {
-        templateUrl: 'app/spot/add-spot.html',
-        controller: 'EditSpotCtrl'
-      })
-      .when('/edit', {
-        templateUrl: 'app/admin/edit-json.html',
-        controller: 'AdminCtrl',
+      .when('/track/:id/edit', {
+        templateUrl: 'app/track/edit-json.html',
+        controller: 'TrackEditCtrl',
         resolve: {
           index: ['$route', function($route) {
             return 'all';
           }]
         }
       })
-      .when('/edit/:index', {
-        templateUrl: 'app/admin/edit-spot.html',
-        controller: 'AdminCtrl',
+      .when('/track/:id/edit/:index', {
+        templateUrl: 'app/track/edit-spot.html',
+        controller: 'TrackEditCtrl',
         resolve: {
+          id: ['$route', function($route) {
+            return $route.current.params.id;
+          }],
           index: ['$route', function($route) {
             return $route.current.params.index;
           }]
         }
       })
+      .when('/dummy/addSpot', {
+        templateUrl: 'app/spot/add-spot.html',
+        controller: 'EditSpotCtrl'
+      })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/track/1'
       });
 
     $locationProvider.html5Mode(true);

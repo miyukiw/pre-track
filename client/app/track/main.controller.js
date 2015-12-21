@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('MainCtrl', ['$scope', '$http', '$location', 'step', 'MainService', function($scope, $http, $location, step, MainService) {
+  .controller('TrackCtrl', ['$scope', '$http', '$location', 'id', 'step', 'MainService', function($scope, $http, $location, trackId, step, MainService) {
 
     $scope.formData = {};
     $scope.spotNum = step || 999;
@@ -22,7 +22,7 @@ angular.module('preTrackApp')
     };
 
     $scope.editIndex = function(index) {
-      $location.path('/edit/'+index);
+      $location.path('/track/' + trackId + '/edit/' + index);
     };
 
     $scope.resolveImageSize = function(length, idx) {
