@@ -36,6 +36,23 @@ angular.module('preTrackApp')
       });
     };
 
+    $scope.delete = function () {
+      var items = $scope.trackItems;
+      items.splice(index, 1);
+      console.log(items);
+
+      $scope.sending = true;
+
+      MainService.updateTrackData(trackId, items)
+      .success(function(resData) {
+        $scope.sending = false;
+        $location.path('/track/' + trackId);
+      }).error(function(e) {
+        $scope.sending = false;
+        window.alert(e)
+      });
+    };
+
     $scope.addImage = function(image_urls) {
       image_urls.push('');
     }
