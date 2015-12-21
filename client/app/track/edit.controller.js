@@ -21,6 +21,7 @@ angular.module('preTrackApp')
       MainService.getTrackData(trackId).then(function(data) {
         $rootScope.pageTitle = data.title;
         $scope.trackName = data.title;
+        $scope.trackCover = data.cover;
         $scope.trackItems = data.items;
 
         $scope.selectOptions = [
@@ -35,7 +36,7 @@ angular.module('preTrackApp')
       });
     };
 
-    $scope.create = function (idx) {
+    $scope.createSpot = function (idx) {
       if (idx === undefined) {
         window.alert('追加する位置を選んでください');
         return;
@@ -44,6 +45,7 @@ angular.module('preTrackApp')
 
       var data = {
         title: $scope.trackName,
+        cover: $scope.trackCover,
         items: $scope.trackItems
       }
       console.log(data);
@@ -70,6 +72,7 @@ angular.module('preTrackApp')
       MainService.getTrackData(trackId).then(function(data) {
         $rootScope.pageTitle = data.title;
         $scope.trackName = data.title;
+        $scope.trackCover = data.cover;
         $scope.trackItems = data.items;
         $scope.trackItems.forEach(function(item) {
           if (item.type === 'place') {
@@ -103,7 +106,7 @@ angular.module('preTrackApp')
       });
     };
 
-    $scope.delete = function () {
+    $scope.deleteSpot = function () {
       var items = $scope.trackItems;
       items.splice(index, 1);
       console.log(items);

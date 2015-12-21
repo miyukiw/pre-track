@@ -1,11 +1,18 @@
 <div class="container" ng-init="getTrackData()">
   <div class="">
+    <div ng-show="isAdd">
+      <label>type</label>
+      <select class="form-control" ng-model="data.type" ng-required="true">
+        <option value="place">場所</option>
+        <option value="transfer">移動手段</option>
+      </select>
+    </div>
     <div class="form-group">
-      <label>場所</label>
+      <label>タイトル</label>
       <input type="text" class="form-control" required ng-model="data.name" />
     </div>
     <div class="form-group icon-label" ng-hide="data.type ==='transfer'">
-      <label>コメント</label>
+      <label>説明</label>
       <textarea type="text" class="form-control" ng-model="data.comment"></textarea>
     </div>
     <div class="image-container" ng-hide="data.type ==='transfer'">
@@ -46,10 +53,10 @@
     <select class="form-control" ng-model="addIndex" ng-options="s.index as s.name group by s.group for s in selectOptions" ng-required="true">
       <option value="">選択してください</option>
     </select>
-    <a href="javascript:void(0)" ng-click="create(addIndex)" class="btn btn-raised btn-primary btn-block">ADD</a>
+    <a href="javascript:void(0)" ng-click="createSpot(addIndex)" class="btn btn-raised btn-primary btn-block">ADD</a>
   </div>
   <div ng-if="!isAdd">
     <a href="javascript:void(0)" ng-click="save()" class="btn btn-raised btn-primary btn-block">UPDATE</a>
-    <a href="javascript:void(0)" ng-click="delete()" class="btn btn-raised btn-danger btn-block">DELETE</a>
+    <a href="javascript:void(0)" ng-click="deleteSpot()" class="btn btn-raised btn-danger btn-block">DELETE</a>
   </div>
 </div>
