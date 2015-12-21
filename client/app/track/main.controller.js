@@ -2,7 +2,7 @@
 
 angular.module('preTrackApp')
   .controller('TrackCtrl', ['$scope', '$rootScope', '$http', '$location', 'id', 'step', 'MainService', function($scope, $rootScope, $http, $location, trackId, step, MainService) {
-
+    $rootScope.backPath = '/';
     $rootScope.pageTitle = '';
     $rootScope.contextMenu = [
       {title: 'Add Spot', path: '/track/' + trackId + '/add'},

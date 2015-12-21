@@ -3,6 +3,7 @@
 angular.module('preTrackApp')
   .controller('TrackAddSpotCtrl', ['$scope', '$rootScope', '$http', '$location', 'id', 'MainService', function ($scope, $rootScope, $http, $location, trackId, MainService) {
     $scope.isAdd = true;
+    $rootScope.backPath = '/track/' + trackId;
 
     $scope.data = {
       type: 'place'
@@ -52,7 +53,8 @@ angular.module('preTrackApp')
     };
 
   }])
-  .controller('TrackEditCtrl', ['$scope', '$rootScope', '$http', '$location', 'id', 'index', 'MainService', function ($scope, $rootScope, $http, $location, trackId, index, MainService) {
+  .controller('TrackEditSpotCtrl', ['$scope', '$rootScope', '$http', '$location', 'id', 'index', 'MainService', function ($scope, $rootScope, $http, $location, trackId, index, MainService) {
+    $rootScope.backPath = '/track/' + trackId;
     $scope.sending = false;
     var _placeNum = 0;
 

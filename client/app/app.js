@@ -32,7 +32,7 @@ angular.module('preTrackApp', [
       })
       .when('/track/:id/edit', {
         templateUrl: 'app/track/edit-json.html',
-        controller: 'TrackEditCtrl',
+        controller: 'TrackEditSpotCtrl',
         resolve: {
           id: ['$route', function($route) {
             return $route.current.params.id;
@@ -44,7 +44,7 @@ angular.module('preTrackApp', [
       })
       .when('/track/:id/edit/:index', {
         templateUrl: 'app/track/edit-spot.html',
-        controller: 'TrackEditCtrl',
+        controller: 'TrackEditSpotCtrl',
         resolve: {
           id: ['$route', function($route) {
             return $route.current.params.id;
@@ -55,8 +55,7 @@ angular.module('preTrackApp', [
         }
       })
       .when('/dummy/addSpot', {
-        templateUrl: 'app/spot/add-spot.html',
-        controller: 'EditSpotCtrl'
+        templateUrl: 'app/spot/add-spot.html'
       })
       .otherwise({
         redirectTo: '/track/sample'
