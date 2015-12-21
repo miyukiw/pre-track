@@ -7,7 +7,7 @@ angular.module('preTrackApp')
 
     $scope.getTrackData = function () {
       MainService.getTrackData(trackId).then(function(data) {
-        $scope.trackItems = data;
+        $scope.trackItems = data.items;
         $scope.trackItems.forEach(function(item) {
           if (item.type === 'place') {
             item.placeNum = _placeNum++;

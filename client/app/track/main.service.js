@@ -3,12 +3,12 @@
 angular.module('preTrackApp')
   .factory('MainService', ['$http', '$q', '$location', function ($http, $q, $location) {
 
-    var _tracks;
+    var _tracks = {};
 
     var getTrackData = function (trackId) {
       var deferred = $q.defer();
-      if (_tracks) {
-        deferred.resolve(_tracks);
+      if (_tracks[trackId]) {
+        deferred.resolve(_tracks[trackId]);
       } else {
         $http({
           url: '/api/track/',
@@ -17,8 +17,8 @@ angular.module('preTrackApp')
             id: trackId
           }
         }).success(function(data, status, headers, config) {
-          _tracks = data.items;
-          deferred.resolve(_tracks);
+          _tracks[trackId] = data;
+          deferred.resolve(_tracks[trackId]);
         }).error(function(data, status, headers, config) {
           deferred.reject(data);
         });
@@ -28,12 +28,14 @@ angular.module('preTrackApp')
     };
 
     var updateTrackData = function (trackId, items) {
+      var data = _tracks[trackId];//todo clone
+      data.items = items;
       return $http({
         url: '/api/track/' + trackId,
         method: 'POST',
-        data: {
-          items: items
-        }
+        data: data
+      }).success(function(data, status, headers, config) {
+        _tracks[trackId] = data;
       });
     };
 

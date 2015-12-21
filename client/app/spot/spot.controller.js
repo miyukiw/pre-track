@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('EditSpotCtrl', function ($scope, $http) {
+  .controller('EditSpotCtrl', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
-  });
+  }]);

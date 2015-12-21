@@ -1,7 +1,13 @@
 'use strict';
 
 angular.module('preTrackApp')
-  .controller('TrackCtrl', ['$scope', '$http', '$location', 'id', 'step', 'MainService', function($scope, $http, $location, trackId, step, MainService) {
+  .controller('TrackCtrl', ['$scope', '$rootScope', '$http', '$location', 'id', 'step', 'MainService', function($scope, $rootScope, $http, $location, trackId, step, MainService) {
+
+    $rootScope.pageTitle = '';
+    $rootScope.contextMenu = [
+      {title: 'Add Spot', path: '/track/' + trackId + '/add'},
+      {title: 'Edit All', path: '/track/' + trackId + '/edit'}
+    ];
 
     $scope.formData = {};
     $scope.spotNum = step || 999;
@@ -12,7 +18,8 @@ angular.module('preTrackApp')
       $scope.sending = true;
 
       MainService.getTrackData(trackId).then(function(data) {
-        $scope.trackItems = data;
+        $rootScope.pageTitle = data.title;
+        $scope.trackItems = data.items;
         $scope.trackItems.forEach(function(item) {
           if (item.type === 'place') {
             item.placeNum = _placeNum++;

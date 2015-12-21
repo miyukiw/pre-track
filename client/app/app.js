@@ -25,6 +25,9 @@ angular.module('preTrackApp', [
         templateUrl: 'app/track/edit-json.html',
         controller: 'TrackEditCtrl',
         resolve: {
+          id: ['$route', function($route) {
+            return $route.current.params.id;
+          }],
           index: ['$route', function($route) {
             return 'all';
           }]
@@ -47,7 +50,7 @@ angular.module('preTrackApp', [
         controller: 'EditSpotCtrl'
       })
       .otherwise({
-        redirectTo: '/track/1'
+        redirectTo: '/track/sample'
       });
 
     $locationProvider.html5Mode(true);

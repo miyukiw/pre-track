@@ -24,7 +24,7 @@
       <!-- endinjector -->
     <!-- endbuild -->
   </head>
-  <body ng-app="preTrackApp">
+  <body ng-app="preTrackApp" ng-controller="MainCtrl">
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -35,17 +35,16 @@
             <i class="material-icons">navigate_before</i>
           </a>
         </li>
-        <li class="disabled">
-          清澄白河アート散歩  
+        <li class="disabled" ng-bind="pageTitle">
         </li>
-        <li class="dropdown">
+        <li class="dropdown" ng-if="contextMenu && contextMenu.length > 0">
           <a class="dropdown-toggle" data-toggle="dropdown" href="bootstrap-elements.html" data-target="#" aria-expanded="false">
             <i class="material-icons">more_vert</i>
           <div class="ripple-container"></div></a>
           <ul class="dropdown-menu">
-            <li><a href="/addSpot" data-toggle="tab">Add spot</a></li>
-            <li class="divider"></li>
-            <li><a href="/edit" data-toggle="tab">Edit</a></li>
+            <li ng-repeat="menu in contextMenu track by $index">
+              <a href="javasctipt:void(0)" data-toggle="tab" ng-click="goto(menu.path)">{{menu.title}}</a>
+            </li>
           </ul>
         </li>
       </ul>
@@ -84,6 +83,7 @@
         <!-- build:js({.tmp,client}) app/app.js -->
         <script src="app/app.js"></script>
           <!-- injector:js -->
+          <script src="app/main.controller.js"></script>
           <script src="app/spot/spot.controller.js"></script>
           <script src="app/track/edit.controller.js"></script>
           <script src="app/track/main.controller.js"></script>
