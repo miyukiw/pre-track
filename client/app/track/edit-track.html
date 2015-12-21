@@ -3,6 +3,11 @@
     <label>Track</label>
     <input type="text" class="form-control" required ng-model="trackName" />
   </div>
+  <div class="form-group">
+    <label>Cover Image</label>
+    <input type="text" class="form-control" required ng-model="trackCover" />
+    <img ng-src="{{trackCover}}" width="100%" />
+  </div>
   <div class="row">
     <div class="track-container">
       <div class="bg"></div>

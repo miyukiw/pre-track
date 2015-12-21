@@ -26,6 +26,35 @@
     }
   }
 }
+
+.demo-card-wide.mdl-card {
+  margin: 30px auto;
+  width: 512px;
+  .mdl-card__title {
+    position: relative;
+    color: #fff;
+    height: 240px;
+    background: url('../assets/demos/welcome_card.jpg') center / cover;
+    .mdl-card__title-text {
+      background: rgba(0, 0, 0, 0.2);
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      left: 0;
+      padding: 10px;
+    }
+  }
+  .mdl-card__menu {
+    color: #fff;
+  }
+  .mdl-card__actions {
+    text-align: right;
+    a {
+      color: #999;
+    }
+  }
+}
+
 #main {
   .track-container {
     position: relative;;

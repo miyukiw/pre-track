@@ -86,6 +86,7 @@ angular.module('preTrackApp')
     $scope.save = function () {
       var data = {
         title: $scope.trackName,
+        cover: $scope.trackCover,
         items: $scope.trackItems
       }
       console.log(data);
