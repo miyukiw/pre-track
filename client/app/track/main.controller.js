@@ -1,6 +1,26 @@
 'use strict';
 
 angular.module('preTrackApp')
+  .controller('TrackCreateCtrl', ['$scope', '$rootScope', '$http', '$location', 'MainService', function($scope, $rootScope, $http, $location, MainService) {
+    $rootScope.backPath = '/';
+    $rootScope.pageTitle = 'Create Track';
+    $scope.data = {
+      items:[
+        {"type":"place","name":"スタート場所","comment":""},
+        {"type":"place","name":"ゴール場所","comment":""}
+      ]
+    };
+    $scope.create = function () {
+      MainService.createTrack($scope.data)
+      .success(function(resData) {
+        $scope.sending = false;
+        $location.path('/track/' + resData.id);
+      }).error(function(e) {
+        $scope.sending = false;
+        window.alert(e)
+      });
+    };
+  }])
   .controller('TrackCtrl', ['$scope', '$rootScope', '$http', '$location', 'id', 'step', 'MainService', function($scope, $rootScope, $http, $location, trackId, step, MainService) {
     $rootScope.backPath = '/';
     $rootScope.pageTitle = '';

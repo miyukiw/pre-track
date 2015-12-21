@@ -5,6 +5,14 @@ angular.module('preTrackApp')
 
     var _tracks = {};
 
+    var createTrack = function (data) {
+      return $http({
+        url: '/api/create-track',
+        method: 'POST',
+        data: data
+      });
+    };
+
     var getTrackData = function (trackId) {
       var deferred = $q.defer();
       if (_tracks[trackId]) {
@@ -38,6 +46,7 @@ angular.module('preTrackApp')
     };
 
     return {
+      createTrack: createTrack,
       getTrackData: getTrackData,
       updateTrackData: updateTrackData
     };

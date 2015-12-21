@@ -9,6 +9,12 @@ angular.module('preTrackApp', [
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
+      .when('/create', {
+        templateUrl: 'app/track/create-track.html',
+        controller: 'TrackCreateCtrl',
+        resolve: {
+        }
+      })
       .when('/track/:id', {
         templateUrl: 'app/track/main.html',
         controller: 'TrackCtrl',
@@ -31,7 +37,7 @@ angular.module('preTrackApp', [
         }
       })
       .when('/track/:id/edit', {
-        templateUrl: 'app/track/edit-json.html',
+        templateUrl: 'app/track/edit-track.html',
         controller: 'TrackEditSpotCtrl',
         resolve: {
           id: ['$route', function($route) {
