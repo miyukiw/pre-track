@@ -96,6 +96,11 @@ exports.deleteTrack = function(req, res) {
   var trackId = req.param('id');
   var path = _DIR + trackId + '.json';
 
+  if (trackId.indexOf('sample') > -1) {
+    res.status(200).send();
+    return;
+  }
+
   fs.unlink(path, function (err) {
     if (err) {
       //throw err;
