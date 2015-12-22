@@ -91,3 +91,18 @@ exports.updateTrack = function(req, res) {
     res.status(200).send();
   });
 };
+
+exports.deleteTrack = function(req, res) {
+  var trackId = req.param('id');
+  var path = _DIR + trackId + '.json';
+
+  fs.unlink(path, function (err) {
+    if (err) {
+      //throw err;
+      res.status(400).send(err.code);
+    }
+    console.log(trackId + ' deleted!');
+    res.status(200).send();
+  });
+
+};

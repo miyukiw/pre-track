@@ -128,6 +128,19 @@ angular.module('preTrackApp')
       });
     };
 
+    $scope.deleteTrack = function () {
+      $scope.sending = true;
+
+      MainService.deleteTrack(trackId)
+      .success(function(resData) {
+        $scope.sending = false;
+        $location.path('/');
+      }).error(function(e) {
+        $scope.sending = false;
+        window.alert(e)
+      });
+    };
+
     $scope.addImage = function(image_urls) {
       image_urls.push('');
     }

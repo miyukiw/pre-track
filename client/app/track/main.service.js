@@ -49,10 +49,18 @@ angular.module('preTrackApp')
       });
     };
 
+    var deleteTrack = function (trackId) {
+      return $http({
+        url: '/api/track/' + trackId,
+        method: 'DELETE'
+      });
+    }
+
     return {
       getTrackList: getTrackList,
       createTrack: createTrack,
       getTrackData: getTrackData,
-      updateTrackData: updateTrackData
+      updateTrackData: updateTrackData,
+      deleteTrack: deleteTrack
     };
   }]);

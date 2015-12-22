@@ -9,4 +9,5 @@ router.get('/tracks', controller.getTrackList);
 router.get('/track/:id', controller.getTrack);
 router.post('/create-track', controller.createTrack);
 router.post('/track/:id', controller.updateTrack);
+router.delete('/track/:id', controller.deleteTrack);
 module.exports = router;
