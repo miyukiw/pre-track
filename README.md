@@ -30,3 +30,14 @@ Then add the path to `buildcontrol` setting in `Gruntfile.js`
 grunt build
 grunt buildcontrol:heroku
 ```
+
+## Links for design
+
+### Material Icons
+https://design.google.com/icons/
+
+### bootstrap-material-design
+http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html
+
+### Material Design Lite
+http://www.getmdl.io/components/index.html
